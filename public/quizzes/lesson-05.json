@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-05",
+  "lessonId": "lesson-05",
+  "title": "The Testing Pyramid",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "ordering",
+      "prompt": "Order the layers from the base of the pyramid to the top (most tests to fewest).",
+      "items": [
+        { "id": "unit", "text": "Unit tests" },
+        { "id": "integration", "text": "Integration tests" },
+        { "id": "e2e", "text": "End-to-end tests" }
+      ],
+      "answer": ["unit", "integration", "e2e"],
+      "explanation": "The base is many fast unit tests, then fewer integration tests, then the fewest, slowest end-to-end tests at the top."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why do we write fewer end-to-end tests than unit tests?",
+      "options": [
+        { "id": "a", "text": "E2E tests can't find any real bugs" },
+        { "id": "b", "text": "E2E tests are slower, costlier to maintain, and flakier, though more realistic" },
+        { "id": "c", "text": "Unit tests give more confidence the whole system works" },
+        { "id": "d", "text": "pytest cannot run E2E tests" }
+      ],
+      "answer": "b",
+      "explanation": "Higher-layer tests are more realistic but slower, more brittle, and costlier, so you keep them few and focused on critical journeys."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "What is the 'ice-cream cone' anti-pattern?",
+      "options": [
+        { "id": "a", "text": "Writing tests only for pure functions" },
+        { "id": "b", "text": "An inverted pyramid: many slow E2E/manual tests and few unit tests" },
+        { "id": "c", "text": "Using fixtures for setup" },
+        { "id": "d", "text": "Running tests in random order" }
+      ],
+      "answer": "b",
+      "explanation": "The ice-cream cone is top-heavy — mostly slow, brittle end-to-end and manual tests with a thin base of unit tests."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which statements about the testing pyramid are accurate? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "It is a heuristic about proportions and cost, not an exact-ratio law" },
+        { "id": "b", "text": "Ratios like 70/20/10 are illustrations, not rules" },
+        { "id": "c", "text": "The testing trophy weights integration tests heavily for some contexts" },
+        { "id": "d", "text": "Google's small/medium/large sizes contradict the pyramid's advice" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "The pyramid is a heuristic; ratios are illustrative; the trophy re-weights toward integration; Google's sizes reinforce (not contradict) 'prefer smaller/faster tests'."
+    },
+    {
+      "id": "q5",
+      "type": "fill-blank",
+      "prompt": "A test that drives the whole system the way a real user would is called an ____ test (three letters / hyphenated).",
+      "answer": ["e2e", "end-to-end", "end to end"],
+      "explanation": "End-to-end (E2E) tests exercise the whole system like a user; they sit at the top of the pyramid."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each test layer to a fitting example for a sign-up feature.",
+      "pairs": [
+        { "left": "Unit", "right": "validate_email('bad') returns False" },
+        { "left": "Integration", "right": "create_user() writes and reads a row in a test database" },
+        { "left": "End-to-end", "right": "Fill the sign-up form in a browser and see 'Welcome'" },
+        { "left": "Google test size", "right": "small / medium / large by process/machine/network" }
+      ],
+      "explanation": "Pure logic is a unit test; code-plus-database is integration; a full browser journey is E2E; Google's sizes reframe the same gradient."
+    }
+  ]
+}

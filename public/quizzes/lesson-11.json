@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-11",
+  "lessonId": "lesson-11",
+  "title": "Mocks and Spies",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "Which situation most justifies behavior verification with a mock?",
+      "options": [
+        { "id": "a", "text": "A pure function that returns a computed total" },
+        { "id": "b", "text": "Code that must send an email when an order ships (no return value)" },
+        { "id": "c", "text": "Sorting a list of numbers" },
+        { "id": "d", "text": "Formatting a string" }
+      ],
+      "answer": "b",
+      "explanation": "When the interaction itself is the behavior and there's no result to check, verifying the call (an email was sent) is appropriate."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "How does assert_called_with differ from assert_called_once_with?",
+      "options": [
+        { "id": "a", "text": "They are identical" },
+        { "id": "b", "text": "assert_called_with checks only the most recent call; assert_called_once_with also requires exactly one call" },
+        { "id": "c", "text": "assert_called_with requires zero calls" },
+        { "id": "d", "text": "assert_called_once_with ignores the arguments" }
+      ],
+      "answer": "b",
+      "explanation": "assert_called_with inspects the latest call's args and ignores extra calls; assert_called_once_with additionally asserts there was exactly one call."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "To make a spy that records calls but still runs the real object, create it with `Mock(______=real_object)`.",
+      "answer": ["wraps"],
+      "explanation": "Mock(wraps=real_object) passes calls through to the real object while recording them for inspection."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which are signs of over-verification? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Asserting the exact internal call sequence instead of the output" },
+        { "id": "b", "text": "A test that breaks on a safe refactor even though behavior is unchanged" },
+        { "id": "c", "text": "Asserting the produced result/state" },
+        { "id": "d", "text": "Checking every incidental helper call the code happens to make" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Over-verification pins incidental interactions and breaks on refactors; asserting the actual result/state is exactly what you should prefer."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each unittest.mock feature to what it reports or does.",
+      "pairs": [
+        { "left": "call_count", "right": "How many times the mock was called" },
+        { "left": "call_args", "right": "Arguments of the most recent call" },
+        { "left": "call_args_list", "right": "Arguments of every call, in order" },
+        { "left": "assert_not_called", "right": "Asserts the mock was never called" }
+      ],
+      "explanation": "These attributes and assertions let you inspect and verify the interactions a mock recorded."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to verify a required side effect with a mock.",
+      "items": [
+        { "id": "make", "text": "Create a Mock for the collaborator" },
+        { "id": "run", "text": "Run the code under test, passing the mock" },
+        { "id": "verify", "text": "Assert the expected call with assert_called_once_with" }
+      ],
+      "answer": ["make", "run", "verify"],
+      "explanation": "Create the mock, exercise the code, then verify the interaction it should have produced."
+    }
+  ]
+}

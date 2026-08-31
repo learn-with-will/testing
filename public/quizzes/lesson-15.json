@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-15",
+  "lessonId": "lesson-15",
+  "title": "Coverage and Its Limits",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What does code coverage measure?",
+      "options": [
+        { "id": "a", "text": "Whether the code is correct" },
+        { "id": "b", "text": "Which lines/branches the tests executed" },
+        { "id": "c", "text": "How many assertions each test makes" },
+        { "id": "d", "text": "How fast the tests run" }
+      ],
+      "answer": "b",
+      "explanation": "Coverage reports the fraction of code that ran during tests — execution, not correctness or assertion quality."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why is branch coverage stronger than line coverage?",
+      "options": [
+        { "id": "a", "text": "It runs the tests twice" },
+        { "id": "b", "text": "It requires each decision to go both true and false, catching untested else/false paths" },
+        { "id": "c", "text": "It ignores if-statements" },
+        { "id": "d", "text": "It only counts comments" }
+      ],
+      "answer": "b",
+      "explanation": "A single input can execute every line while only taking one side of an if; branch coverage flags the untaken branch."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Why can 100% coverage still miss bugs? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "A test can run a line while asserting nothing meaningful" },
+        { "id": "b", "text": "Coverage doesn't ensure you tried the inputs where bugs live" },
+        { "id": "c", "text": "Covered code can be fully executed and still be wrong" },
+        { "id": "d", "text": "Coverage proves the absence of all defects" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Coverage measures execution, not assertions, inputs, or correctness — it can never prove the absence of defects."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "'When a measure becomes a target, it ceases to be a good measure' is known as ____'s law.",
+      "answer": ["goodhart", "goodharts", "goodhart's"],
+      "explanation": "Goodhart's law explains why mandating a coverage target invites tests that game the number."
+    },
+    {
+      "id": "q5",
+      "type": "ordering",
+      "prompt": "Order coverage types from weakest to most rigorous.",
+      "items": [
+        { "id": "line", "text": "Statement/line coverage" },
+        { "id": "branch", "text": "Branch (decision) coverage" },
+        { "id": "path", "text": "Path coverage" }
+      ],
+      "answer": ["line", "branch", "path"],
+      "explanation": "Line coverage is weakest, branch coverage checks both sides of each decision, and path coverage checks combinations (rarely full)."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each item to its role in coverage practice.",
+      "pairs": [
+        { "left": "coverage.py / pytest-cov", "right": "Tools that collect and report coverage" },
+        { "left": "--cov-branch", "right": "Enable branch coverage" },
+        { "left": "Missing column", "right": "The untested lines/branches to act on" },
+        { "left": "Coverage as a target", "right": "Invites assertion-free tests (Goodhart)" }
+      ],
+      "explanation": "Use the tools and the Missing report to find gaps; don't turn the percentage into a target."
+    }
+  ]
+}

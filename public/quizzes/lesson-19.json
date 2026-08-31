@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-19",
+  "lessonId": "lesson-19",
+  "title": "Testing Time and Randomness",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is the cleanest way to make clock-reading code testable?",
+      "options": [
+        { "id": "a", "text": "Call datetime.now() inside the function and hope for the best" },
+        { "id": "b", "text": "Inject `now` as a parameter so the test supplies a fixed value" },
+        { "id": "c", "text": "Sleep until a known time" },
+        { "id": "d", "text": "Only run the test at noon" }
+      ],
+      "answer": "b",
+      "explanation": "Injecting the time makes the dependency explicit and lets the test control it, avoiding wall-clock flakiness."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Does a test that passes with a fixed random seed prove the code is correct for all inputs?",
+      "options": [
+        { "id": "a", "text": "Yes, a seed covers every case" },
+        { "id": "b", "text": "No — it only pins that one draw; broad input coverage needs property-based testing" },
+        { "id": "c", "text": "Yes, if the seed is 0" },
+        { "id": "d", "text": "No — seeds make tests non-deterministic" }
+      ],
+      "answer": "b",
+      "explanation": "A seed makes one draw reproducible; verifying behavior across many inputs is the job of property-based testing."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which techniques keep time/randomness tests deterministic? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Inject a seeded random.Random instance" },
+        { "id": "b", "text": "Freeze the clock with freeze_time when you can't inject" },
+        { "id": "c", "text": "Use real time.sleep to wait out backoff delays" },
+        { "id": "d", "text": "Use a library seed knob like random_state" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Injected/seeded randomness and frozen clocks give determinism; real sleeps just make tests slow and flaky."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "To test exponential backoff instantly, inject the ____ function and assert the wait durations instead of actually waiting.",
+      "answer": ["sleep", "delay"],
+      "explanation": "Injecting (or recording) the sleep lets you verify the backoff schedule without real delays."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each need to a suitable technique.",
+      "pairs": [
+        { "left": "Fixed 'now'", "right": "Inject now, or freeze_time" },
+        { "left": "Reproducible draw", "right": "Seeded random.Random / random_state" },
+        { "left": "Backoff/timeout test", "right": "Inject or record sleep; fake clock" },
+        { "left": "Async waiting", "right": "Await the real condition, not a fixed sleep" }
+      ],
+      "explanation": "Each need maps to a determinism-preserving approach rather than real time or unseeded randomness."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to make a token generator that uses time and randomness testable.",
+      "items": [
+        { "id": "inject", "text": "Change the function to accept now and an rng parameter" },
+        { "id": "supply", "text": "In the test, pass a fixed datetime and a seeded Random" },
+        { "id": "assert", "text": "Assert the exact expiry and value produced" }
+      ],
+      "answer": ["inject", "supply", "assert"],
+      "explanation": "Inject the sources, supply fixed values in the test, then assert the fully-determined output."
+    }
+  ]
+}

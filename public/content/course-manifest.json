@@ -1,0 +1,410 @@
+[
+  {
+    "id": "lesson-01",
+    "slug": "what-is-software-testing",
+    "title": "What Is Software Testing?",
+    "level": "beginner",
+    "order": 1,
+    "duration": 15,
+    "file": "beginner/what-is-software-testing.md",
+    "summary": "What software testing actually is — running code to check it behaves as intended — why it matters, the difference between verification and validation, what a test can and cannot prove, and the vocabulary (bug, defect, failure, regression) the rest of the course builds on.",
+    "tags": [
+      "foundations",
+      "verification",
+      "validation",
+      "bugs",
+      "why-test"
+    ]
+  },
+  {
+    "id": "lesson-02",
+    "slug": "your-first-test-with-pytest",
+    "title": "Your First Test with pytest",
+    "level": "beginner",
+    "order": 2,
+    "duration": 16,
+    "file": "beginner/your-first-test-with-pytest.md",
+    "summary": "Setting up Python and pytest, writing your very first test function, how pytest discovers tests by naming convention, running the suite from the command line, and reading a green pass and a red failure report.",
+    "tags": [
+      "pytest",
+      "setup",
+      "test-discovery",
+      "running-tests",
+      "assertions"
+    ]
+  },
+  {
+    "id": "lesson-03",
+    "slug": "anatomy-of-a-test",
+    "title": "The Anatomy of a Test",
+    "level": "beginner",
+    "order": 3,
+    "duration": 16,
+    "file": "beginner/anatomy-of-a-test.md",
+    "summary": "The shape every good test shares — Arrange, Act, Assert — plus how to keep one test focused on a single behavior, name it so the report reads like a specification, and write failures that explain themselves.",
+    "tags": [
+      "arrange-act-assert",
+      "structure",
+      "naming",
+      "readability",
+      "assertions"
+    ]
+  },
+  {
+    "id": "lesson-04",
+    "slug": "assertions-in-depth",
+    "title": "Assertions in Depth",
+    "level": "beginner",
+    "order": 4,
+    "duration": 18,
+    "file": "beginner/assertions-in-depth.md",
+    "summary": "Going beyond `assert x == y` — comparing values, collections, and identity correctly, checking floating-point results with pytest.approx, and asserting that code raises the right exception with pytest.raises, including matching the message.",
+    "tags": [
+      "assertions",
+      "pytest-raises",
+      "approx",
+      "exceptions",
+      "floating-point"
+    ]
+  },
+  {
+    "id": "lesson-05",
+    "slug": "the-testing-pyramid",
+    "title": "The Testing Pyramid",
+    "level": "beginner",
+    "order": 5,
+    "duration": 18,
+    "file": "beginner/the-testing-pyramid.md",
+    "summary": "The classic mental model for balancing a test suite — many fast unit tests at the base, fewer integration tests, and a few slow end-to-end tests at the top — why the shape follows from cost and speed, and honest caveats including the ice-cream-cone anti-pattern and the testing-trophy alternative.",
+    "tags": [
+      "testing-pyramid",
+      "unit",
+      "integration",
+      "e2e",
+      "test-strategy"
+    ]
+  },
+  {
+    "id": "lesson-06",
+    "slug": "unit-tests-in-practice",
+    "title": "Unit Tests in Practice",
+    "level": "beginner",
+    "order": 6,
+    "duration": 18,
+    "file": "beginner/unit-tests-in-practice.md",
+    "summary": "What actually makes a test a unit test — small scope, isolation, speed, and determinism — why pure functions are the easiest things to test, the difference between solitary and sociable unit tests, and how to hunt down edge cases.",
+    "tags": [
+      "unit-tests",
+      "pure-functions",
+      "isolation",
+      "solitary-sociable",
+      "edge-cases"
+    ]
+  },
+  {
+    "id": "lesson-07",
+    "slug": "fixtures-and-test-setup",
+    "title": "Fixtures and Test Setup",
+    "level": "beginner",
+    "order": 7,
+    "duration": 18,
+    "file": "beginner/fixtures-and-test-setup.md",
+    "summary": "Removing duplicated setup with pytest fixtures — how a fixture provides ready-made state to a test, sharing fixtures via conftest.py, cleaning up with yield, choosing a fixture scope, and keeping shared setup from leaking state between tests.",
+    "tags": [
+      "fixtures",
+      "conftest",
+      "setup-teardown",
+      "fixture-scope",
+      "isolation"
+    ]
+  },
+  {
+    "id": "lesson-08",
+    "slug": "parametrized-tests",
+    "title": "Parametrized Tests",
+    "level": "beginner",
+    "order": 8,
+    "duration": 16,
+    "file": "beginner/parametrized-tests.md",
+    "summary": "Running the same test logic over many inputs with @pytest.mark.parametrize — turning a pile of near-identical tests into one data-driven table, labeling cases for readable output, and using parametrization to cover boundaries and edge cases cheaply.",
+    "tags": [
+      "parametrize",
+      "data-driven",
+      "edge-cases",
+      "boundary-values",
+      "dry"
+    ]
+  },
+  {
+    "id": "lesson-09",
+    "slug": "test-doubles-overview",
+    "title": "Test Doubles Overview",
+    "level": "intermediate",
+    "order": 9,
+    "duration": 18,
+    "file": "intermediate/test-doubles-overview.md",
+    "summary": "The precise vocabulary for stand-in objects that replace real dependencies in a test — dummy, stub, spy, mock, and fake — where each fits, and the key split between state verification (stubs/fakes) and behavior verification (mocks).",
+    "tags": [
+      "test-doubles",
+      "mock",
+      "stub",
+      "fake",
+      "spy"
+    ]
+  },
+  {
+    "id": "lesson-10",
+    "slug": "stubs-and-fakes",
+    "title": "Stubs and Fakes",
+    "level": "intermediate",
+    "order": 10,
+    "duration": 18,
+    "file": "intermediate/stubs-and-fakes.md",
+    "summary": "The two doubles you'll reach for most — stubs that feed canned answers into your code and fakes that are lightweight working implementations — how to build each, when a fake beats a pile of stubs, and why both go with state verification.",
+    "tags": [
+      "stubs",
+      "fakes",
+      "state-verification",
+      "in-memory",
+      "canned-responses"
+    ]
+  },
+  {
+    "id": "lesson-11",
+    "slug": "mocks-and-spies",
+    "title": "Mocks and Spies",
+    "level": "intermediate",
+    "order": 11,
+    "duration": 18,
+    "file": "intermediate/mocks-and-spies.md",
+    "summary": "Behavior verification with mocks and spies — using unittest.mock to assert that your code made the right calls, the assert_called family and call inspection, when interaction is the behavior you must check, and the risk of over-verifying.",
+    "tags": [
+      "mocks",
+      "spies",
+      "behavior-verification",
+      "unittest-mock",
+      "assert-called"
+    ]
+  },
+  {
+    "id": "lesson-12",
+    "slug": "patching-and-mock-pitfalls",
+    "title": "Patching and Mock Pitfalls",
+    "level": "intermediate",
+    "order": 12,
+    "duration": 20,
+    "file": "intermediate/patching-and-mock-pitfalls.md",
+    "summary": "Replacing a real dependency in place with unittest.mock.patch — and the traps that make mocking go wrong: patching where a name is looked up (not where it's defined), using autospec so mocks match real signatures, and the danger of over-mocking things you don't own.",
+    "tags": [
+      "patching",
+      "mock-patch",
+      "autospec",
+      "monkeypatch",
+      "pitfalls"
+    ]
+  },
+  {
+    "id": "lesson-13",
+    "slug": "test-driven-development",
+    "title": "Test-Driven Development",
+    "level": "intermediate",
+    "order": 13,
+    "duration": 20,
+    "file": "intermediate/test-driven-development.md",
+    "summary": "Writing the test first — the red-green-refactor cycle of test-driven development, how it drives design in small steps, a worked example of building a function test-first, and an honest account of what TDD does and doesn't give you.",
+    "tags": [
+      "tdd",
+      "red-green-refactor",
+      "kent-beck",
+      "design",
+      "incremental"
+    ]
+  },
+  {
+    "id": "lesson-14",
+    "slug": "integration-testing",
+    "title": "Integration Testing",
+    "level": "intermediate",
+    "order": 14,
+    "duration": 20,
+    "file": "intermediate/integration-testing.md",
+    "summary": "Testing that separately-working units actually work together across their seams — with a real (test) database or filesystem, when to use real dependencies versus fakes at a boundary, and how to keep integration tests hermetic and repeatable.",
+    "tags": [
+      "integration-testing",
+      "seams",
+      "databases",
+      "boundaries",
+      "hermetic"
+    ]
+  },
+  {
+    "id": "lesson-15",
+    "slug": "coverage-and-its-limits",
+    "title": "Coverage and Its Limits",
+    "level": "intermediate",
+    "order": 15,
+    "duration": 18,
+    "file": "intermediate/coverage-and-its-limits.md",
+    "summary": "What code coverage does and doesn't tell you — statement vs branch coverage, measuring it with coverage.py, why 100% coverage never means bug-free, and how to use coverage as a tool to find untested code rather than a target to game.",
+    "tags": [
+      "coverage",
+      "branch-coverage",
+      "coverage-py",
+      "goodhart",
+      "limits"
+    ]
+  },
+  {
+    "id": "lesson-16",
+    "slug": "testing-behavior-not-implementation",
+    "title": "Testing Behavior, Not Implementation",
+    "level": "intermediate",
+    "order": 16,
+    "duration": 18,
+    "file": "intermediate/testing-behavior-not-implementation.md",
+    "summary": "Why good tests assert on observable behavior through the public API rather than private internals — how implementation-coupled tests become brittle 'change detectors' that break on safe refactors, and how behavior-focused tests give you the confidence to change code.",
+    "tags": [
+      "behavior",
+      "implementation-details",
+      "brittle-tests",
+      "refactoring",
+      "public-api"
+    ]
+  },
+  {
+    "id": "lesson-17",
+    "slug": "end-to-end-testing",
+    "title": "End-to-End Testing",
+    "level": "advanced",
+    "order": 17,
+    "duration": 20,
+    "file": "advanced/end-to-end-testing.md",
+    "summary": "Testing the whole system the way a real user would — driving a browser with Playwright through a critical journey, using resilient locators and auto-waiting, and keeping end-to-end tests few because they are slow and brittle.",
+    "tags": [
+      "e2e",
+      "playwright",
+      "user-journeys",
+      "browser",
+      "brittleness"
+    ]
+  },
+  {
+    "id": "lesson-18",
+    "slug": "flaky-tests",
+    "title": "Flaky Tests",
+    "level": "advanced",
+    "order": 18,
+    "duration": 20,
+    "file": "advanced/flaky-tests.md",
+    "summary": "Tests that pass and fail without any code change — why flakiness is a real defect that erodes trust and hides bugs, the usual causes (shared state, time, concurrency, network, randomness, order), how to diagnose them, and why you fix the cause instead of just retrying.",
+    "tags": [
+      "flaky-tests",
+      "non-determinism",
+      "order-dependence",
+      "retries",
+      "isolation"
+    ]
+  },
+  {
+    "id": "lesson-19",
+    "slug": "testing-time-and-randomness",
+    "title": "Testing Time and Randomness",
+    "level": "advanced",
+    "order": 19,
+    "duration": 18,
+    "file": "advanced/testing-time-and-randomness.md",
+    "summary": "Concrete techniques for making time- and randomness-dependent code testable — injecting or freezing the clock, seeding or injecting a random source, avoiding real sleeps, and testing timeouts and retries deterministically.",
+    "tags": [
+      "time",
+      "randomness",
+      "freezegun",
+      "determinism",
+      "monkeypatch"
+    ]
+  },
+  {
+    "id": "lesson-20",
+    "slug": "property-based-testing",
+    "title": "Property-Based Testing",
+    "level": "advanced",
+    "order": 20,
+    "duration": 20,
+    "file": "advanced/property-based-testing.md",
+    "summary": "Instead of hand-picking examples, state a property that must hold for all inputs and let Hypothesis generate hundreds of cases to try to break it — finding edge cases you'd never think of, and shrinking any failure to a minimal example.",
+    "tags": [
+      "property-based",
+      "hypothesis",
+      "invariants",
+      "shrinking",
+      "generative"
+    ]
+  },
+  {
+    "id": "lesson-21",
+    "slug": "mutation-testing",
+    "title": "Mutation Testing",
+    "level": "advanced",
+    "order": 21,
+    "duration": 18,
+    "file": "advanced/mutation-testing.md",
+    "summary": "Measuring how good your tests actually are by deliberately introducing small bugs (mutants) into the code and checking whether the tests catch them — a stronger signal than coverage, with honest caveats about equivalent mutants and cost.",
+    "tags": [
+      "mutation-testing",
+      "mutants",
+      "mutation-score",
+      "test-quality",
+      "mutmut"
+    ]
+  },
+  {
+    "id": "lesson-22",
+    "slug": "continuous-integration",
+    "title": "Continuous Integration and Testing",
+    "level": "advanced",
+    "order": 22,
+    "duration": 18,
+    "file": "advanced/continuous-integration.md",
+    "summary": "Running the test suite automatically on every change so problems surface within minutes — the CI pipeline, gating merges on green tests, keeping the suite fast with parallelism and test selection, and handling flaky tests without eroding trust.",
+    "tags": [
+      "continuous-integration",
+      "ci",
+      "automation",
+      "pipelines",
+      "fast-feedback"
+    ]
+  },
+  {
+    "id": "lesson-23",
+    "slug": "a-pragmatic-testing-strategy",
+    "title": "A Pragmatic Testing Strategy",
+    "level": "advanced",
+    "order": 23,
+    "duration": 20,
+    "file": "advanced/a-pragmatic-testing-strategy.md",
+    "summary": "Bringing the course together into judgment — deciding what to test and how much based on risk, keeping suites fast and maintainable, turning every bug into a regression test, and recognizing when not to write a test at all.",
+    "tags": [
+      "strategy",
+      "risk-based",
+      "maintainability",
+      "regression",
+      "roi"
+    ]
+  },
+  {
+    "id": "lesson-24",
+    "slug": "capstone-testing-a-real-project",
+    "title": "Capstone: Testing a Real Project",
+    "level": "advanced",
+    "order": 24,
+    "duration": 24,
+    "file": "advanced/capstone-testing-a-real-project.md",
+    "summary": "Putting the whole course to work on one small project — a URL shortener — by assessing risk, TDD-ing the core logic, unit- and integration-testing each layer, adding one end-to-end test for the critical journey, checking coverage, killing a mutant, fixing a flaky test, and wiring it all into CI.",
+    "tags": [
+      "capstone",
+      "workflow",
+      "end-to-end",
+      "project",
+      "synthesis"
+    ]
+  }
+]

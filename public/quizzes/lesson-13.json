@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-13",
+  "lessonId": "lesson-13",
+  "title": "Test-Driven Development",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "ordering",
+      "prompt": "Order the phases of one TDD cycle.",
+      "items": [
+        { "id": "red", "text": "Red — write a small failing test" },
+        { "id": "green", "text": "Green — write the simplest code to pass it" },
+        { "id": "refactor", "text": "Refactor — clean up while tests stay green" }
+      ],
+      "answer": ["red", "green", "refactor"],
+      "explanation": "TDD runs red (failing test), green (simplest passing code), refactor (improve design), then repeats."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why is watching the test fail first important?",
+      "options": [
+        { "id": "a", "text": "It makes the suite run faster" },
+        { "id": "b", "text": "A failing test proves it actually checks the new behavior" },
+        { "id": "c", "text": "pytest requires at least one failure" },
+        { "id": "d", "text": "It increases code coverage automatically" }
+      ],
+      "answer": "b",
+      "explanation": "If a test passes before the code exists, you can't trust it to catch anything; the red step proves the test has teeth."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "What is 'triangulation' in TDD?",
+      "options": [
+        { "id": "a", "text": "Running tests on three machines" },
+        { "id": "b", "text": "Adding a second example that a hard-coded answer can't satisfy, forcing real logic" },
+        { "id": "c", "text": "Writing three assertions per test" },
+        { "id": "d", "text": "Measuring coverage from three angles" }
+      ],
+      "answer": "b",
+      "explanation": "Triangulation adds another case so a constant 'fake it' answer no longer passes, driving out the general implementation."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which statements about TDD are honest and accurate? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "TDD guarantees a good architecture" },
+        { "id": "b", "text": "TDD gives a regression net that makes refactoring safer" },
+        { "id": "c", "text": "TDD does not replace integration, E2E, or edge-case testing" },
+        { "id": "d", "text": "Every behavior ends up with a test that once failed" }
+      ],
+      "answer": ["b", "c", "d"],
+      "explanation": "TDD provides a safety net and meaningful tests but does not guarantee good design or replace other test levels."
+    },
+    {
+      "id": "q5",
+      "type": "fill-blank",
+      "prompt": "The technique of returning a hard-coded value just to reach green, then generalizing, is called '____ it till you make it'.",
+      "answer": ["fake", "faking"],
+      "explanation": "'Fake it till you make it' gets you to green quickly; later tests (triangulation) force the real implementation."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each TDD phase or idea to its purpose.",
+      "pairs": [
+        { "left": "Red", "right": "Write a failing test for the next behavior" },
+        { "left": "Green", "right": "Make it pass as simply as possible" },
+        { "left": "Refactor", "right": "Improve the design while tests stay green" },
+        { "left": "Small steps", "right": "Localize mistakes and keep feedback fast" }
+      ],
+      "explanation": "The cycle plus small steps is what makes TDD a tight feedback loop."
+    }
+  ]
+}

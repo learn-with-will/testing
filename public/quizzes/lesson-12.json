@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-12",
+  "lessonId": "lesson-12",
+  "title": "Patching and Mock Pitfalls",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "Module app.handlers does `from app.services import send_email`. Which patch target is correct?",
+      "options": [
+        { "id": "a", "text": "@patch('app.services.send_email')" },
+        { "id": "b", "text": "@patch('app.handlers.send_email')" },
+        { "id": "c", "text": "@patch('send_email')" },
+        { "id": "d", "text": "@patch('app.services')" }
+      ],
+      "answer": "b",
+      "explanation": "Patch where the name is looked up — handlers imported its own reference, so you must replace app.handlers.send_email, not the definition site."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What does autospec=True protect you from?",
+      "options": [
+        { "id": "a", "text": "Slow tests" },
+        { "id": "b", "text": "Mocks that silently accept misspelled attributes and wrong-signature calls" },
+        { "id": "c", "text": "Tests that are too readable" },
+        { "id": "d", "text": "Running the real network" }
+      ],
+      "answer": "b",
+      "explanation": "autospec builds the double from the real API, so wrong names and bad call signatures raise instead of passing silently."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "The golden rule of patching: patch where the name is ____ ____, not where it is defined.",
+      "answer": ["looked up", "looked-up", "used"],
+      "explanation": "You must replace the reference in the module that uses the name, because Python bound that reference at import time."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which are good mocking practices? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Use autospec=True so typos and bad signatures fail loudly" },
+        { "id": "b", "text": "Wrap third-party services in your own adapter and double that boundary" },
+        { "id": "c", "text": "Patch the definition site so the change is global and permanent" },
+        { "id": "d", "text": "Let patch/monkeypatch automatically undo the replacement" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Autospec, owning the boundary, and auto-undo are all sound; patching the definition site (and leaving globals replaced) is the mistake."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each tool to what it does.",
+      "pairs": [
+        { "left": "patch(target)", "right": "Temporarily replace a dotted name, then restore it" },
+        { "left": "patch.object", "right": "Patch a specific attribute of an object/class" },
+        { "left": "autospec=True", "right": "Build the mock from the real API to catch bad calls" },
+        { "left": "monkeypatch", "right": "pytest fixture to set/replace attrs and env vars, auto-undone" }
+      ],
+      "explanation": "These are the core patching tools; each replaces something temporarily, and autospec keeps the double faithful."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to correctly patch a dependency used inside a function.",
+      "items": [
+        { "id": "find", "text": "Find which module looks up the name" },
+        { "id": "target", "text": "Patch that module's name with autospec=True" },
+        { "id": "assert", "text": "Configure the return/side_effect and assert behavior" }
+      ],
+      "answer": ["find", "target", "assert"],
+      "explanation": "Identify the lookup site, patch it faithfully with autospec, then drive and verify the test."
+    }
+  ]
+}

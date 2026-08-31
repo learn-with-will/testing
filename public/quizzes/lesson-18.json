@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-18",
+  "lessonId": "lesson-18",
+  "title": "Flaky Tests",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is a flaky test?",
+      "options": [
+        { "id": "a", "text": "A slow test" },
+        { "id": "b", "text": "A test that passes and fails without any change to the code" },
+        { "id": "c", "text": "A test with no assertions" },
+        { "id": "d", "text": "A test that always fails" }
+      ],
+      "answer": "b",
+      "explanation": "Flaky tests are non-deterministic — they depend on some uncontrolled input, so results vary between identical runs."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why is automatic retry-until-green a poor response to flakiness?",
+      "options": [
+        { "id": "a", "text": "It makes tests run slower only" },
+        { "id": "b", "text": "It masks the non-determinism and any real intermittent bug instead of removing the cause" },
+        { "id": "c", "text": "pytest forbids retries" },
+        { "id": "d", "text": "It deletes the test" }
+      ],
+      "answer": "b",
+      "explanation": "Retries hide the underlying cause (and possibly a real race), so the bug still ships while CI looks green and trust erodes."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which are common causes of flaky tests? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Shared mutable state / order dependence" },
+        { "id": "b", "text": "Reliance on real time, dates, or time zones" },
+        { "id": "c", "text": "Unseeded randomness" },
+        { "id": "d", "text": "Asserting a function's return value" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Shared state, real time, and unseeded randomness are classic non-determinism sources; asserting a return value is just normal testing."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Temporarily moving a stubbornly flaky test out of the blocking suite while you fix it is called ____.",
+      "answer": ["quarantine", "quarantining"],
+      "explanation": "Quarantine protects CI's trustworthiness as a stopgap; it is not a fix, and you never skip/delete a test just to go green."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each flakiness cause to its real fix.",
+      "pairs": [
+        { "left": "Shared/global state", "right": "Function-scoped fixtures and cleanup" },
+        { "left": "Real clock / dates", "right": "Inject or freeze the clock" },
+        { "left": "Unseeded randomness", "right": "Set a fixed seed" },
+        { "left": "Real network calls", "right": "Fake the dependency; no real I/O" }
+      ],
+      "explanation": "Each cause has a determinism-restoring fix — isolate state, control time, seed RNG, and remove real I/O."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to diagnose and address a flaky test.",
+      "items": [
+        { "id": "repro", "text": "Reproduce it (isolation, repetition, shuffled order)" },
+        { "id": "cause", "text": "Identify the uncontrolled input (state, time, randomness, I/O)" },
+        { "id": "fix", "text": "Remove the cause; quarantine only if a fix takes time" }
+      ],
+      "answer": ["repro", "cause", "fix"],
+      "explanation": "Reproduce, find the root cause, then fix it — with quarantine as a temporary measure, never retries as the answer."
+    }
+  ]
+}

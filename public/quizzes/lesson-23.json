@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-23",
+  "lessonId": "lesson-23",
+  "title": "A Pragmatic Testing Strategy",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "Risk-based testing allocates effort according to:",
+      "options": [
+        { "id": "a", "text": "The alphabetical order of files" },
+        { "id": "b", "text": "Impact if it breaks × likelihood of failure (complexity/churn)" },
+        { "id": "c", "text": "Whichever code is easiest to test" },
+        { "id": "d", "text": "The number of lines of code only" }
+      ],
+      "answer": "b",
+      "explanation": "Concentrate testing where a failure is costly and where mistakes are likely; go light where risk is trivial."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What does 'catch the bug at the lowest useful level' recommend?",
+      "options": [
+        { "id": "a", "text": "Always use an end-to-end test" },
+        { "id": "b", "text": "Prefer the cheapest test (often a unit test) that still gives real confidence" },
+        { "id": "c", "text": "Never write integration tests" },
+        { "id": "d", "text": "Only test through the UI" }
+      ],
+      "answer": "b",
+      "explanation": "Pushing a check to the lowest level that catches the bug keeps it fast and precise, reserving E2E for critical journeys."
+    },
+    {
+      "id": "q3",
+      "type": "ordering",
+      "prompt": "Order the response to a newly reported bug.",
+      "items": [
+        { "id": "repro", "text": "Write a failing test that reproduces the bug" },
+        { "id": "fix", "text": "Fix the code until the test passes" },
+        { "id": "keep", "text": "Keep the test as a regression guard" }
+      ],
+      "answer": ["repro", "fix", "keep"],
+      "explanation": "Reproduce first, then fix, and the test remains to prevent the bug from returning silently."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "When is deliberately NOT writing a test reasonable? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Trivial code with no logic (a plain getter)" },
+        { "id": "b", "text": "A throwaway prototype you'll delete" },
+        { "id": "c", "text": "The payment/auth path" },
+        { "id": "d", "text": "Third-party library internals you don't own" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Skip trivial code, throwaway spikes, and others' internals; the high-impact payment/auth path is exactly where you should test hard."
+    },
+    {
+      "id": "q5",
+      "type": "fill-blank",
+      "prompt": "A test added to lock in a fix so a bug can't return is called a ____ test.",
+      "answer": ["regression", "regression test"],
+      "explanation": "Turning each bug into a regression test builds a suite that remembers every past mistake."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each quality of a maintainable suite to why it matters.",
+      "pairs": [
+        { "left": "Fast", "right": "So it's actually run often" },
+        { "left": "Deterministic", "right": "So people trust green (no flakes)" },
+        { "left": "Readable", "right": "So tests double as documentation" },
+        { "left": "Behavior-focused", "right": "So refactoring stays cheap" }
+      ],
+      "explanation": "Speed, determinism, readability, and behavior-focus are what make a suite an asset rather than a tax."
+    }
+  ]
+}

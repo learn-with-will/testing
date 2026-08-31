@@ -1,0 +1,79 @@
+{
+  "id": "quiz-lesson-02",
+  "lessonId": "lesson-02",
+  "title": "Your First Test with pytest",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "By default, which function will pytest collect as a test?",
+      "options": [
+        { "id": "a", "text": "def check_login(): ..." },
+        { "id": "b", "text": "def test_login(): ..." },
+        { "id": "c", "text": "def login_test_case(): ..." },
+        { "id": "d", "text": "def Login(): ..." }
+      ],
+      "answer": "b",
+      "explanation": "Discovery collects functions whose names start with test_. Only test_login matches the default convention."
+    },
+    {
+      "id": "q2",
+      "type": "multiple-choice",
+      "prompt": "Which are true about running your first pytest suite? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "A test is a plain function that uses assert — no base class needed" },
+        { "id": "b", "text": "pytest discovers test_*.py files automatically" },
+        { "id": "c", "text": "You must list each test in a config file before it runs" },
+        { "id": "d", "text": "Assertion introspection shows the actual values behind a failed assert" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "pytest needs no base class and no manual test list; it discovers by convention and rewrites asserts to show real values on failure."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "You isolate a project's installed packages by creating a ____ (three-letter tool, e.g. `python -m ___`).",
+      "answer": ["venv", "virtual environment", "virtualenv"],
+      "explanation": "A virtual environment (venv) keeps each project's dependencies separate and reproducible."
+    },
+    {
+      "id": "q4",
+      "type": "ordering",
+      "prompt": "Order the steps to get from nothing to a green run.",
+      "items": [
+        { "id": "venv", "text": "Create and activate a virtual environment" },
+        { "id": "install", "text": "pip install pytest" },
+        { "id": "write", "text": "Write a test_*.py file with a test_* function" },
+        { "id": "run", "text": "Run pytest and read the result" }
+      ],
+      "answer": ["venv", "install", "write", "run"],
+      "explanation": "Set up isolation, install the runner, write a discoverable test, then run pytest."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "pytest prints 'no tests ran' and '0 tests'. What is the most likely cause?",
+      "options": [
+        { "id": "a", "text": "The code is definitely bug-free" },
+        { "id": "b", "text": "The test names or file names don't match the discovery convention" },
+        { "id": "c", "text": "pytest is not installed" },
+        { "id": "d", "text": "The assertions all passed" }
+      ],
+      "answer": "b",
+      "explanation": "Zero collected tests usually means a naming problem (missing test_ prefix), not that everything is fine — always check the count."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each pytest output symbol or flag to its meaning.",
+      "pairs": [
+        { "left": ".", "right": "A passing test" },
+        { "left": "F", "right": "A failing test" },
+        { "left": "-v", "right": "Verbose: one line per test with its name" },
+        { "left": "assert 5 == 6", "right": "Introspected failure showing actual values" }
+      ],
+      "explanation": "Dots and Fs summarize pass/fail; -v expands the report; introspection surfaces the real values in a failed assert."
+    }
+  ]
+}

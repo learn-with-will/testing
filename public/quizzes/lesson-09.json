@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-09",
+  "lessonId": "lesson-09",
+  "title": "Test Doubles Overview",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "match-pair",
+      "prompt": "Match each test double to its defining role.",
+      "pairs": [
+        { "left": "Dummy", "right": "Passed to fill a parameter but never used" },
+        { "left": "Stub", "right": "Provides canned answers to calls" },
+        { "left": "Mock", "right": "Verifies the expected interactions occurred" },
+        { "left": "Fake", "right": "A working but simplified implementation (e.g., in-memory DB)" }
+      ],
+      "explanation": "Dummies fill slots, stubs feed canned input, mocks verify calls, and fakes are lightweight real implementations."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Which double supports behavior verification (checking that the right calls were made)?",
+      "options": [
+        { "id": "a", "text": "Stub" },
+        { "id": "b", "text": "Mock" },
+        { "id": "c", "text": "Dummy" },
+        { "id": "d", "text": "Fake" }
+      ],
+      "answer": "b",
+      "explanation": "Mocks (and spies) verify interactions — behavior verification. Stubs and fakes support state verification of results."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "A spy differs from a plain stub because it also:",
+      "options": [
+        { "id": "a", "text": "Runs in production" },
+        { "id": "b", "text": "Records how it was called for later inspection" },
+        { "id": "c", "text": "Refuses to return any value" },
+        { "id": "d", "text": "Deletes the database" }
+      ],
+      "answer": "b",
+      "explanation": "A spy is a stub that additionally records the calls it received so the test can inspect them afterward."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Checking your code's resulting return value or state (rather than which calls it made) is called ____ verification.",
+      "answer": ["state", "state-based"],
+      "explanation": "State verification checks the outcome; behavior verification checks the interactions. Stubs/fakes suit the former."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which are good guidelines for using test doubles? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Prefer the lightest double that does the job" },
+        { "id": "b", "text": "Default to state verification; verify behavior only when the interaction is the point" },
+        { "id": "c", "text": "Always assert only that a method was called, never the result" },
+        { "id": "d", "text": "Use a fake for a stateful collaborator instead of many stubbed calls" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Use the simplest double, prefer checking outcomes, and reach for a fake for stateful collaborators; asserting only 'was called' while ignoring the result lets bugs through."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order these doubles by increasing capability/ceremony, from least to most.",
+      "items": [
+        { "id": "dummy", "text": "Dummy (never used)" },
+        { "id": "stub", "text": "Stub (canned answers)" },
+        { "id": "mock", "text": "Mock (verifies interactions)" }
+      ],
+      "answer": ["dummy", "stub", "mock"],
+      "explanation": "A dummy does nothing, a stub returns canned data, and a mock adds built-in verification of the calls it expects."
+    }
+  ]
+}

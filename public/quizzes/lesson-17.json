@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-17",
+  "lessonId": "lesson-17",
+  "title": "End-to-End Testing",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What most distinguishes an end-to-end test?",
+      "options": [
+        { "id": "a", "text": "It mocks every dependency" },
+        { "id": "b", "text": "It drives the whole running system like a real user, with nothing mocked" },
+        { "id": "c", "text": "It tests one pure function" },
+        { "id": "d", "text": "It only checks code coverage" }
+      ],
+      "answer": "b",
+      "explanation": "E2E tests exercise the entire assembled system end to end, catching broken wiring that lower tests mock away."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why should end-to-end tests be kept few?",
+      "options": [
+        { "id": "a", "text": "They can't find real bugs" },
+        { "id": "b", "text": "They're slow, brittle, and expensive to maintain" },
+        { "id": "c", "text": "Browsers can't be automated" },
+        { "id": "d", "text": "They give the least confidence" }
+      ],
+      "answer": "b",
+      "explanation": "E2E tests are slow and break on UI/timing/data changes, so you reserve them for a few critical journeys."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "Playwright reduces flakiness by ____-waiting for elements and retrying assertions, instead of using fixed sleeps.",
+      "answer": ["auto", "automatically", "auto-"],
+      "explanation": "Auto-waiting waits for actionability and retries expect() until it holds or times out, replacing brittle sleeps."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which make E2E tests more resilient? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Locating elements by role, label, or visible text" },
+        { "id": "b", "text": "Relying on auto-waiting assertions" },
+        { "id": "c", "text": "Using time.sleep to wait for content" },
+        { "id": "d", "text": "Seeding test data instead of relying on pre-existing records" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Resilient locators, auto-waiting, and seeded data all reduce flakiness; fixed sleeps increase it."
+    },
+    {
+      "id": "q5",
+      "type": "ordering",
+      "prompt": "Order the steps a Playwright test typically performs.",
+      "items": [
+        { "id": "goto", "text": "Navigate to a page (goto)" },
+        { "id": "act", "text": "Locate elements and act (fill, click)" },
+        { "id": "expect", "text": "Assert what the user sees (expect ... to_be_visible)" }
+      ],
+      "answer": ["goto", "act", "expect"],
+      "explanation": "Navigate, then interact via locators, then assert the visible outcome — with auto-waiting throughout."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each Playwright locator to what it targets.",
+      "pairs": [
+        { "left": "get_by_role('button', name='Save')", "right": "An element by accessible role and name" },
+        { "left": "get_by_label('Email')", "right": "A form field by its label" },
+        { "left": "get_by_text('Welcome')", "right": "An element by its visible text" },
+        { "left": "data-testid", "right": "A stable handle for elements with no natural one" }
+      ],
+      "explanation": "Role, label, and text locators mirror what users perceive; data-testid is a fallback stable hook."
+    }
+  ]
+}

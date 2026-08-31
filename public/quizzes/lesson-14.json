@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-14",
+  "lessonId": "lesson-14",
+  "title": "Integration Testing",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What kind of bug is an integration test especially good at catching?",
+      "options": [
+        { "id": "a", "text": "A typo inside one pure function" },
+        { "id": "b", "text": "A mismatch at the seam between components (e.g., wrong column name or data format)" },
+        { "id": "c", "text": "A slow algorithm in isolation" },
+        { "id": "d", "text": "A missing docstring" }
+      ],
+      "answer": "b",
+      "explanation": "Integration tests exercise real seams, catching bugs between correctly-built parts that unit tests mock away."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What does it mean for an integration test to be 'hermetic'?",
+      "options": [
+        { "id": "a", "text": "It runs only in production" },
+        { "id": "b", "text": "It is self-contained — brings its own data and depends on no shared or pre-existing state" },
+        { "id": "c", "text": "It never uses a database" },
+        { "id": "d", "text": "It shares one database across all tests" }
+      ],
+      "answer": "b",
+      "explanation": "A hermetic test seeds its own data and doesn't depend on other tests or shared state, so it's repeatable and order-independent."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "A boundary where components connect — a database, HTTP client, or module interface — is called a ____.",
+      "answer": ["seam", "boundary"],
+      "explanation": "Integration tests target seams: the boundaries where separately-built parts meet."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which practices keep integration tests reliable? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Use a fresh, disposable test database and seed exactly what's needed" },
+        { "id": "b", "text": "Roll back each test's writes or clean up afterward" },
+        { "id": "c", "text": "Point the tests at the shared production database" },
+        { "id": "d", "text": "Fake third parties you don't own behind an adapter" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Disposable data, cleanup/rollback, and adapter-faking keep tests hermetic; using production is exactly what to avoid."
+    },
+    {
+      "id": "q5",
+      "type": "ordering",
+      "prompt": "Order the steps of a database integration test using a fixture.",
+      "items": [
+        { "id": "setup", "text": "Create a fresh test database and schema" },
+        { "id": "seed", "text": "Run the code that writes and reads through it" },
+        { "id": "assert", "text": "Assert the resulting rows, then tear down" }
+      ],
+      "answer": ["setup", "seed", "assert"],
+      "explanation": "Build a disposable DB, exercise the real seam, verify the outcome, and clean up."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each boundary choice to when it's appropriate.",
+      "pairs": [
+        { "left": "Real test database", "right": "The integration with your own DB is what you're testing" },
+        { "left": "In-memory fake", "right": "Fast, realistic behavior without external setup" },
+        { "left": "Local stub server", "right": "Testing your HTTP client's parsing/handling" },
+        { "left": "Real third-party API", "right": "Rarely — prefer a fake adapter; a few smoke checks only" }
+      ],
+      "explanation": "Use real instances for what you own and are testing; fake or stub third parties and external services."
+    }
+  ]
+}

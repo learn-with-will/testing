@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-04",
+  "lessonId": "lesson-04",
+  "title": "Assertions in Depth",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "How should you assert that a computed float equals 0.3?",
+      "options": [
+        { "id": "a", "text": "assert value == 0.3" },
+        { "id": "b", "text": "assert value is 0.3" },
+        { "id": "c", "text": "assert value == approx(0.3)" },
+        { "id": "d", "text": "assert value in [0.3]" }
+      ],
+      "answer": "c",
+      "explanation": "Binary rounding means == is unreliable for floats. pytest.approx compares within a tolerance."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Which is the correct, idiomatic way to assert a result is None?",
+      "options": [
+        { "id": "a", "text": "assert result == None" },
+        { "id": "b", "text": "assert result is None" },
+        { "id": "c", "text": "assert result approx None" },
+        { "id": "d", "text": "assert not result" }
+      ],
+      "answer": "b",
+      "explanation": "`is None` checks identity against the None singleton — the idiomatic and reliable check (`not result` is also true for 0, [], '')."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "To assert a block raises the right exception, wrap it in `with pytest.______(ValueError):`.",
+      "answer": ["raises", "raises()"],
+      "explanation": "pytest.raises is the context manager that asserts the enclosed code raises the given exception type."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which practices make assertions more reliable? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Use pytest.approx for computed floating-point results" },
+        { "id": "b", "text": "Match a stable substring of an exception message rather than the whole string" },
+        { "id": "c", "text": "Use `is` to compare ordinary numbers and strings" },
+        { "id": "d", "text": "Test error paths with pytest.raises, not just the happy path" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "approx for floats, a stable message fragment, and testing error paths all help; using `is` for ordinary values is a bug (reserve it for None/True/False)."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each operator or helper to what it checks.",
+      "pairs": [
+        { "left": "==", "right": "Equality of value" },
+        { "left": "is", "right": "Same object (identity), e.g. None" },
+        { "left": "in", "right": "Membership in a collection or string" },
+        { "left": "approx", "right": "Numeric equality within a tolerance" }
+      ],
+      "explanation": "== compares values, is compares identity, in checks membership, and approx compares numbers within a tolerance."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to test that withdraw(50, 100) rejects an overdraw.",
+      "items": [
+        { "id": "enter", "text": "Enter a `with pytest.raises(ValueError):` block" },
+        { "id": "call", "text": "Call withdraw(50, 100) inside the block" },
+        { "id": "pass", "text": "The test passes because the ValueError was raised" }
+      ],
+      "answer": ["enter", "call", "pass"],
+      "explanation": "pytest.raises asserts the enclosed call raises the expected exception; if it does, the test passes."
+    }
+  ]
+}

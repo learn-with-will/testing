@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-07",
+  "lessonId": "lesson-07",
+  "title": "Fixtures and Test Setup",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "How does a pytest test get access to a fixture?",
+      "options": [
+        { "id": "a", "text": "By importing it at the top of the file" },
+        { "id": "b", "text": "By listing the fixture's name as a parameter of the test function" },
+        { "id": "c", "text": "By calling the fixture directly inside the test" },
+        { "id": "d", "text": "By decorating the test with the fixture" }
+      ],
+      "answer": "b",
+      "explanation": "pytest injects a fixture when the test declares its name as a parameter; you don't call or import it."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "In a fixture that uses `yield`, where does teardown code go?",
+      "options": [
+        { "id": "a", "text": "Before the yield" },
+        { "id": "b", "text": "After the yield — and it runs even if the test fails" },
+        { "id": "c", "text": "Teardown isn't possible with yield fixtures" },
+        { "id": "d", "text": "Inside the test function" }
+      ],
+      "answer": "b",
+      "explanation": "Setup runs before yield, teardown after; pytest guarantees the teardown runs after the test regardless of pass/fail."
+    },
+    {
+      "id": "q3",
+      "type": "ordering",
+      "prompt": "Order pytest fixture scopes from narrowest (most isolated) to widest (most shared).",
+      "items": [
+        { "id": "function", "text": "function" },
+        { "id": "module", "text": "module" },
+        { "id": "session", "text": "session" }
+      ],
+      "answer": ["function", "module", "session"],
+      "explanation": "function (per test) is narrowest; module (per file) is wider; session (per run) is widest and most shared."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Fixtures placed in a file named ____ are shared automatically across a directory tree without importing.",
+      "answer": ["conftest.py", "conftest"],
+      "explanation": "conftest.py holds fixtures/hooks that pytest makes available to all tests in that directory and below."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which choices help prevent state leaking between tests? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Keep mutable fixtures at function scope" },
+        { "id": "b", "text": "Use a session-scoped mutable list shared by all tests" },
+        { "id": "c", "text": "Use tmp_path for temporary files" },
+        { "id": "d", "text": "Do teardown after yield so cleanup always runs" }
+      ],
+      "answer": ["a", "c", "d"],
+      "explanation": "Function scope, unique temp dirs, and guaranteed teardown all isolate tests; a wide-scope mutable object is exactly what causes leakage."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each built-in fixture to what it provides.",
+      "pairs": [
+        { "left": "tmp_path", "right": "A unique temporary directory per test" },
+        { "left": "monkeypatch", "right": "Safely set/replace attributes and env vars, auto-undone" },
+        { "left": "capsys", "right": "Capture stdout/stderr output" },
+        { "left": "yield", "right": "Split a fixture into setup and teardown" }
+      ],
+      "explanation": "These built-ins cover temp files, patching, output capture, and the setup/teardown split."
+    }
+  ]
+}

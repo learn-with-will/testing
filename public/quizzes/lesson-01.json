@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-01",
+  "lessonId": "lesson-01",
+  "title": "What Is Software Testing?",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "Which statement best captures what a passing test proves?",
+      "options": [
+        { "id": "a", "text": "The code is correct for every possible input" },
+        { "id": "b", "text": "The code worked for the specific cases the test tried" },
+        { "id": "c", "text": "The code contains no bugs" },
+        { "id": "d", "text": "The code is faster than the previous version" }
+      ],
+      "answer": "b",
+      "explanation": "Testing shows the presence of bugs, never their absence (Dijkstra). A pass means the tried cases worked — it raises confidence, it does not prove universal correctness."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Verification answers which question?",
+      "options": [
+        { "id": "a", "text": "Did we build the right product for the user?" },
+        { "id": "b", "text": "Did we build the product right, to its specification?" },
+        { "id": "c", "text": "Is the product profitable?" },
+        { "id": "d", "text": "Is the product popular?" }
+      ],
+      "answer": "b",
+      "explanation": "Verification = 'did we build it right?' (meets the spec). Validation = 'did we build the right thing?' (solves the real problem)."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which of these are good reasons a test suite is valuable? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "It catches regressions when code changes" },
+        { "id": "b", "text": "It encodes the expected behavior so a machine can re-check it" },
+        { "id": "c", "text": "It mathematically proves the program has zero defects" },
+        { "id": "d", "text": "It finds many bugs before users do" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Tests catch regressions, pin expected behavior, and surface bugs early — but they cannot prove the absence of all defects."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Previously-working behavior that breaks after a later change is called a ____.",
+      "answer": ["regression", "regression bug"],
+      "explanation": "A regression is behavior that used to work and breaks after a change — the classic thing automated tests defend against."
+    },
+    {
+      "id": "q5",
+      "type": "ordering",
+      "prompt": "Order the parts of a single test case as you'd write them.",
+      "items": [
+        { "id": "input", "text": "Choose the input(s)" },
+        { "id": "action", "text": "Run the code under test" },
+        { "id": "expect", "text": "Compare the result to the expected value" }
+      ],
+      "answer": ["input", "action", "expect"],
+      "explanation": "A test case sets up inputs, performs the action, then asserts the actual result against the expected result."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each term to its meaning.",
+      "pairs": [
+        { "left": "Defect (bug)", "right": "A flaw in the code" },
+        { "left": "Failure", "right": "The observable wrong behavior at run time" },
+        { "left": "Verification", "right": "Built the product right (meets spec)" },
+        { "left": "Validation", "right": "Built the right product (solves the need)" }
+      ],
+      "explanation": "A defect is the flaw; a failure is what you observe when it runs. Verification checks against the spec; validation checks against the real need."
+    }
+  ]
+}

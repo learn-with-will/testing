@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-03",
+  "lessonId": "lesson-03",
+  "title": "The Anatomy of a Test",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "ordering",
+      "prompt": "Put the phases of a well-structured test in order.",
+      "items": [
+        { "id": "arrange", "text": "Arrange — set up inputs and state" },
+        { "id": "act", "text": "Act — perform the one action under test" },
+        { "id": "assert", "text": "Assert — compare the result to the expectation" }
+      ],
+      "answer": ["arrange", "act", "assert"],
+      "explanation": "Arrange-Act-Assert is the standard shape: prepare, do the single action, then check the outcome."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "\"One logical concept per test\" means:",
+      "options": [
+        { "id": "a", "text": "Each test may contain exactly one assert statement, always" },
+        { "id": "b", "text": "Each test targets one behavior, even if it takes a few related asserts" },
+        { "id": "c", "text": "Each test file may contain only one test" },
+        { "id": "d", "text": "Tests should never use assertions" }
+      ],
+      "answer": "b",
+      "explanation": "The rule is one behavior per test. Several assertions about the same behavior are fine; avoid mixing unrelated behaviors."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which test names are good because they describe behavior? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "test_withdraw_more_than_balance_raises_error" },
+        { "id": "b", "text": "test_1" },
+        { "id": "c", "text": "test_empty_cart_total_is_zero" },
+        { "id": "d", "text": "test_stuff" }
+      ],
+      "answer": ["a", "c"],
+      "explanation": "Good names state subject, condition, and expected result; test_1 and test_stuff communicate nothing in a failure report."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "AAA is a fold of Meszaros's Four-Phase Test: setup, exercise, verify, and ____ (handled by the framework in AAA).",
+      "answer": ["teardown", "tear down", "cleanup"],
+      "explanation": "The Four-Phase Test adds teardown/cleanup, which AAA leaves to the framework's fixtures/cleanup."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "Why is a single test that checks four unrelated behaviors a problem?",
+      "options": [
+        { "id": "a", "text": "It runs faster than four separate tests" },
+        { "id": "b", "text": "The first failing assert stops the test, hiding the rest, and the name can't say what broke" },
+        { "id": "c", "text": "pytest refuses to collect tests with multiple asserts" },
+        { "id": "d", "text": "It improves the readability of the report" }
+      ],
+      "answer": "b",
+      "explanation": "Because assertions short-circuit on the first failure, a grab-bag test hides later problems and gives an ambiguous failure."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each test phase or concept to what it does.",
+      "pairs": [
+        { "left": "Arrange", "right": "Prepare inputs and the world under test" },
+        { "left": "Act", "right": "Perform the single action being tested" },
+        { "left": "Assert", "right": "Check the result against the expectation" },
+        { "left": "Descriptive name", "right": "Makes the report read like a spec" }
+      ],
+      "explanation": "Each phase has a distinct job; a descriptive name turns the verbose report into documentation."
+    }
+  ]
+}

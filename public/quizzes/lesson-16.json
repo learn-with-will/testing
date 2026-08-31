@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-16",
+  "lessonId": "lesson-16",
+  "title": "Testing Behavior, Not Implementation",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "Which assertion tests behavior rather than implementation?",
+      "options": [
+        { "id": "a", "text": "assert cart._items[0].price == 3" },
+        { "id": "b", "text": "assert cart.total() == 3" },
+        { "id": "c", "text": "assert cart._recalc_called is True" },
+        { "id": "d", "text": "assert cart._storage_type == 'dict'" }
+      ],
+      "answer": "b",
+      "explanation": "total() is the public, observable contract; the others reach into private internals and break on refactors."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why are implementation-coupled tests called brittle 'change detectors'?",
+      "options": [
+        { "id": "a", "text": "They detect any behavior change" },
+        { "id": "b", "text": "They fail on internal changes even when behavior is unchanged (false failures)" },
+        { "id": "c", "text": "They run faster than behavior tests" },
+        { "id": "d", "text": "They never fail" }
+      ],
+      "answer": "b",
+      "explanation": "Coupled to internals, they go red on behavior-preserving refactors — false failures that discourage improving the code."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "The gut-check question: if you change the ____ without changing behavior, the test should still pass.",
+      "answer": ["implementation", "internals", "code"],
+      "explanation": "If a behavior-preserving implementation change would break the test, the test is coupled to implementation and should be loosened."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which are warning signs of implementation-coupled tests? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Asserting on private methods or private fields" },
+        { "id": "b", "text": "Verifying the exact internal call sequence" },
+        { "id": "c", "text": "Asserting the public return value" },
+        { "id": "d", "text": "Pinning incidental output ordering that isn't part of the contract" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Private internals, exact call order, and incidental details are coupling smells; asserting the public result is exactly right."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each assertion target to its robustness/appropriateness.",
+      "pairs": [
+        { "left": "Return value / observable state", "right": "High — the default target" },
+        { "left": "Required side effect (email sent)", "right": "High — when the effect is the behavior" },
+        { "left": "Internal call sequence", "right": "Low — only if the interaction is the contract" },
+        { "left": "Private field", "right": "Very low — usually a design smell" }
+      ],
+      "explanation": "Prefer results and observable effects; reserve interaction checks for genuine contracts and avoid private-detail assertions."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to turn a brittle test into a behavior test.",
+      "items": [
+        { "id": "spot", "text": "Spot the assertion on a private detail or call sequence" },
+        { "id": "api", "text": "Identify the public behavior callers actually rely on" },
+        { "id": "assert", "text": "Assert that behavior through the public API" }
+      ],
+      "answer": ["spot", "api", "assert"],
+      "explanation": "Find the coupling, determine the real contract, and re-assert it through the public interface."
+    }
+  ]
+}

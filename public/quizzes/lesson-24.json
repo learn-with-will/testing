@@ -1,0 +1,79 @@
+{
+  "id": "quiz-lesson-24",
+  "lessonId": "lesson-24",
+  "title": "Capstone: Testing a Real Project",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "match-pair",
+      "prompt": "Match each layer of the URL shortener to the right test level.",
+      "pairs": [
+        { "left": "encode()/decode() pure logic", "right": "Unit + property tests" },
+        { "left": "Service that assigns codes", "right": "Unit test with a fake repository" },
+        { "left": "LinkRepository (SQL)", "right": "Integration test with a disposable DB" },
+        { "left": "Create-then-redirect journey", "right": "One end-to-end test" }
+      ],
+      "explanation": "Pure logic → unit/property; a service → unit with a fake; a real seam → integration; the critical journey → one E2E."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why does the redirect flow get the single end-to-end test?",
+      "options": [
+        { "id": "a", "text": "It's the cheapest thing to test" },
+        { "id": "b", "text": "It's the critical journey — if it breaks, every link fails" },
+        { "id": "c", "text": "E2E tests are the fastest" },
+        { "id": "d", "text": "Unit tests can't run in this project" }
+      ],
+      "answer": "b",
+      "explanation": "You reserve scarce E2E tests for the highest-value journey, which here is create-then-redirect."
+    },
+    {
+      "id": "q3",
+      "type": "ordering",
+      "prompt": "Order the capstone workflow steps.",
+      "items": [
+        { "id": "risk", "text": "Assess risk and plan the test levels" },
+        { "id": "tdd", "text": "TDD the core logic and unit-test edges" },
+        { "id": "integ", "text": "Integration-test the repository, add one E2E" },
+        { "id": "ci", "text": "Add coverage/mutation checks and wire up CI" }
+      ],
+      "answer": ["risk", "tdd", "integ", "ci"],
+      "explanation": "Plan by risk, build the core test-first, cover the seams and the journey, then add quality checks and CI."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "A `decode(encode(n)) == n` check verified across many generated inputs is a ____-trip property.",
+      "answer": ["round", "round-trip"],
+      "explanation": "The round-trip (inverse) property is ideal for encoders/decoders and pairs well with Hypothesis."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which are sound capstone practices? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Keep integration tests hermetic with a disposable database" },
+        { "id": "b", "text": "Inject the id/time source so codes are deterministic" },
+        { "id": "c", "text": "Test the whole app only through 30 browser tests" },
+        { "id": "d", "text": "Spot-check key logic with a mutation run, not just coverage %" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Hermetic integration, injected determinism, and mutation spot-checks are sound; an all-E2E suite is an ice-cream cone."
+    },
+    {
+      "id": "q6",
+      "type": "single-choice",
+      "prompt": "A mutation run shows a survivor on encode(). What's the right response?",
+      "options": [
+        { "id": "a", "text": "Ignore it — coverage is already 100%" },
+        { "id": "b", "text": "Add the assertion or boundary case that distinguishes the mutant, killing it" },
+        { "id": "c", "text": "Delete the encode function" },
+        { "id": "d", "text": "Add a retry to the test" }
+      ],
+      "answer": "b",
+      "explanation": "A survivor marks a gap in assertions/cases; add the distinguishing test (e.g., a two-char boundary) to kill it and harden the logic."
+    }
+  ]
+}

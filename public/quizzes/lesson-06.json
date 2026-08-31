@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-06",
+  "lessonId": "lesson-06",
+  "title": "Unit Tests in Practice",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "prompt": "Which properties should a good unit test have? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Small scope — exercises one piece of code" },
+        { "id": "b", "text": "Fast — runs in milliseconds" },
+        { "id": "c", "text": "Deterministic — same result every run" },
+        { "id": "d", "text": "Talks to the real production database" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Unit tests are small, fast, and deterministic; hitting a real database makes a test slow and flaky — not a unit test."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why are pure functions the easiest code to unit-test?",
+      "options": [
+        { "id": "a", "text": "They always run on the network" },
+        { "id": "b", "text": "Their output depends only on inputs and they have no side effects, so you just assert the return value" },
+        { "id": "c", "text": "They can never contain bugs" },
+        { "id": "d", "text": "They require mocking every dependency" }
+      ],
+      "answer": "b",
+      "explanation": "Same inputs → same output with no side effects means no setup, doubles, or cleanup — just pass inputs and check the result."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "A solitary unit test differs from a sociable one because it:",
+      "options": [
+        { "id": "a", "text": "Replaces the unit's collaborators with test doubles" },
+        { "id": "b", "text": "Uses the real collaborators" },
+        { "id": "c", "text": "Runs only in production" },
+        { "id": "d", "text": "Has no assertions" }
+      ],
+      "answer": "a",
+      "explanation": "Solitary tests isolate the unit by swapping collaborators for doubles; sociable tests use the real collaborators."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Anything a function does beyond returning a value — writing a file, calling the network, mutating global state — is a ____ ____.",
+      "answer": ["side effect", "side-effect", "side effects"],
+      "explanation": "Side effects make code harder to test; pushing logic into pure functions keeps side effects thin and at the edges."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each input category to an edge case worth testing for a list-processing function.",
+      "pairs": [
+        { "left": "Empty / none", "right": "An empty list or None" },
+        { "left": "One vs many", "right": "A single element vs several" },
+        { "left": "Boundary", "right": "The min or max allowed value (off-by-one)" },
+        { "left": "Invalid", "right": "A negative count where positive is expected" }
+      ],
+      "explanation": "Bugs cluster at empties, single-vs-many, boundaries, and invalid inputs — test each deliberately."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to make tangled I/O-plus-logic code easy to unit-test.",
+      "items": [
+        { "id": "extract", "text": "Extract the decision logic into a pure function" },
+        { "id": "thin", "text": "Leave a thin caller that does the I/O" },
+        { "id": "test", "text": "Unit-test the pure function with in-memory data" }
+      ],
+      "answer": ["extract", "thin", "test"],
+      "explanation": "Separate logic from I/O, keep the side-effecting caller thin, then test the pure core directly."
+    }
+  ]
+}

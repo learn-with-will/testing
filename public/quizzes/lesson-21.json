@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-21",
+  "lessonId": "lesson-21",
+  "title": "Mutation Testing",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What does mutation testing measure?",
+      "options": [
+        { "id": "a", "text": "Which lines the tests executed" },
+        { "id": "b", "text": "Whether the tests would catch small injected bugs (mutants)" },
+        { "id": "c", "text": "How fast the code runs" },
+        { "id": "d", "text": "How many tests exist" }
+      ],
+      "answer": "b",
+      "explanation": "It injects small code changes and checks if any test fails, directly measuring whether tests would notice a bug."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "A mutant 'survives'. What does that mean?",
+      "options": [
+        { "id": "a", "text": "A test failed, catching the injected bug" },
+        { "id": "b", "text": "All tests still passed despite the injected bug — a gap in the tests" },
+        { "id": "c", "text": "The code was deleted" },
+        { "id": "d", "text": "Coverage increased" }
+      ],
+      "answer": "b",
+      "explanation": "A surviving mutant means the tests didn't notice the change — usually a missing or weak assertion or an untested case."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "A code change that doesn't alter observable behavior, so no test can kill it, is called an ____ mutant.",
+      "answer": ["equivalent", "equivalent mutant"],
+      "explanation": "Equivalent mutants survive without indicating weak tests, which is why a perfect mutation score is usually impractical."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Why is mutation testing a stronger signal than coverage? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "It exercises whether results are actually asserted, not just executed" },
+        { "id": "b", "text": "Each survivor is an actionable gap (missing assertion or case)" },
+        { "id": "c", "text": "It is faster than a normal test run" },
+        { "id": "d", "text": "A line can be 100% covered yet let a mutant survive" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Mutation testing checks assertion quality and yields actionable survivors; it is slower, not faster, than a normal run."
+    },
+    {
+      "id": "q5",
+      "type": "ordering",
+      "prompt": "Order the steps of a mutation-testing run.",
+      "items": [
+        { "id": "mutate", "text": "Create mutants (small code changes)" },
+        { "id": "run", "text": "Run the test suite against each mutant" },
+        { "id": "score", "text": "Classify killed vs survived and compute the mutation score" }
+      ],
+      "answer": ["mutate", "run", "score"],
+      "explanation": "Generate mutants, run tests against each, then tally killed/survived (ignoring equivalents) for the score."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each mutation-testing term to its meaning.",
+      "pairs": [
+        { "left": "Mutant", "right": "Code with one small change" },
+        { "left": "Killed", "right": "A test failed, catching the change" },
+        { "left": "Mutation score", "right": "Killed ÷ non-equivalent mutants" },
+        { "left": "mutmut", "right": "A Python mutation-testing tool" }
+      ],
+      "explanation": "These terms describe the mechanics: mutants, kills, the score, and a common Python tool."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-08",
+  "lessonId": "lesson-08",
+  "title": "Parametrized Tests",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What does @pytest.mark.parametrize produce from one decorated function and three value tuples?",
+      "options": [
+        { "id": "a", "text": "One test that stops at the first failing tuple" },
+        { "id": "b", "text": "Three independent tests, each reported separately" },
+        { "id": "c", "text": "A single test that averages the results" },
+        { "id": "d", "text": "Nothing until you also add a fixture" }
+      ],
+      "answer": "b",
+      "explanation": "pytest runs the function once per tuple, generating independent tests so one failing case doesn't hide the others."
+    },
+    {
+      "id": "q2",
+      "type": "match-pair",
+      "prompt": "Match each parametrization term to its meaning.",
+      "pairs": [
+        { "left": "@pytest.mark.parametrize", "right": "Runs one test once per row of input data" },
+        { "left": "ids", "right": "Readable labels so a failure names the case" },
+        { "left": "boundary value", "right": "An input at the edge of valid/invalid" },
+        { "left": "cross-product", "right": "What stacking two parametrize decorators creates" }
+      ],
+      "explanation": "parametrize generates one test per row; ids label each case; boundary values sit at the edges; stacking decorators multiplies the cases together."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which are good uses of parametrization? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Checking one behavior across many inputs" },
+        { "id": "b", "text": "Covering boundary values (below, at, above a limit)" },
+        { "id": "c", "text": "Merging three unrelated functions into one test_everything" },
+        { "id": "d", "text": "Turning five near-duplicate tests into one table" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Parametrize the same logic over varied data (including boundaries) and remove duplication; don't force unrelated behaviors into one generic test."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Inputs at the edge of valid/invalid — where off-by-one bugs live — are called ____ values.",
+      "answer": ["boundary", "boundary value", "edge"],
+      "explanation": "Boundary values (min, max, just-below, just-above) are prime targets for parametrized tables."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "Why avoid computing the 'expected' value with the same formula used by the code under test?",
+      "options": [
+        { "id": "a", "text": "It makes the test file longer" },
+        { "id": "b", "text": "The test could pass even when both the code and the formula are wrong" },
+        { "id": "c", "text": "pytest forbids arithmetic in tests" },
+        { "id": "d", "text": "It disables parametrization" }
+      ],
+      "answer": "b",
+      "explanation": "If the test mirrors the implementation, a shared mistake passes silently; hand-written expected values are an independent check."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to collapse several near-identical tests into a parametrized one.",
+      "items": [
+        { "id": "spot", "text": "Spot tests that differ only in input/expected values" },
+        { "id": "table", "text": "Write one test body and a table of (input, expected) rows" },
+        { "id": "ids", "text": "Add ids so each case is labeled in the report" }
+      ],
+      "answer": ["spot", "table", "ids"],
+      "explanation": "Identify the shared logic, extract the varying data into a table, then label the rows for readable output."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-20",
+  "lessonId": "lesson-20",
+  "title": "Property-Based Testing",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "How does property-based testing differ from example-based testing?",
+      "options": [
+        { "id": "a", "text": "It hand-picks a few exact input/output pairs" },
+        { "id": "b", "text": "It states a rule that must hold for all inputs and generates many to try to break it" },
+        { "id": "c", "text": "It only tests private methods" },
+        { "id": "d", "text": "It measures coverage" }
+      ],
+      "answer": "b",
+      "explanation": "You specify a property/invariant, and Hypothesis generates varied inputs to find a counterexample."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What does Hypothesis's 'shrinking' do?",
+      "options": [
+        { "id": "a", "text": "Compresses the test file" },
+        { "id": "b", "text": "Reduces a failing input to the smallest case that still breaks the property" },
+        { "id": "c", "text": "Deletes failing tests" },
+        { "id": "d", "text": "Speeds up passing tests" }
+      ],
+      "answer": "b",
+      "explanation": "Shrinking finds a minimal reproducing example, making the failure far easier to debug."
+    },
+    {
+      "id": "q3",
+      "type": "match-pair",
+      "prompt": "Match each property pattern to an example.",
+      "pairs": [
+        { "left": "Round-trip", "right": "decode(encode(x)) == x" },
+        { "left": "Idempotence", "right": "sorted(sorted(xs)) == sorted(xs)" },
+        { "left": "Invariant", "right": "len(dedupe(xs)) <= len(xs)" },
+        { "left": "Oracle", "right": "my_sort(xs) == sorted(xs)" }
+      ],
+      "explanation": "These are the staple property shapes: inverse, idempotence, an always-true invariant, and comparison to a trusted reference."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "A trusted, obviously-correct reference implementation you compare against is called an ____.",
+      "answer": ["oracle", "test oracle"],
+      "explanation": "An oracle (e.g., Python's sorted) lets you check your implementation across generated inputs without specifying exact outputs."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which statements are accurate about property-based testing? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "'No counterexample found' is not a proof of correctness" },
+        { "id": "b", "text": "It complements, rather than replaces, example-based tests" },
+        { "id": "c", "text": "Restating the implementation as the property is a strong test" },
+        { "id": "d", "text": "It often finds edge cases humans wouldn't think to try" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "It samples inputs (not a proof), complements example tests, and surfaces surprising edges; mirroring the implementation is a weak, self-confirming property."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to write a property-based test with Hypothesis.",
+      "items": [
+        { "id": "prop", "text": "Identify a property that holds for all valid inputs" },
+        { "id": "given", "text": "Use @given with a strategy to generate inputs" },
+        { "id": "debug", "text": "If it fails, debug the shrunk minimal example" }
+      ],
+      "answer": ["prop", "given", "debug"],
+      "explanation": "Find the invariant, generate inputs with a strategy, then use the shrunk counterexample to fix any failure."
+    }
+  ]
+}

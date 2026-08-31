@@ -1,0 +1,78 @@
+{
+  "id": "quiz-lesson-10",
+  "lessonId": "lesson-10",
+  "title": "Stubs and Fakes",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "You configure `mock.method.side_effect = TimeoutError('slow')`. What happens when the code calls the method?",
+      "options": [
+        { "id": "a", "text": "It returns the string 'slow'" },
+        { "id": "b", "text": "It raises TimeoutError, letting you test the error path" },
+        { "id": "c", "text": "It records the call but returns None" },
+        { "id": "d", "text": "Nothing — side_effect only affects return_value" }
+      ],
+      "answer": "b",
+      "explanation": "Setting side_effect to an exception makes the call raise it, so you can test how your code handles the failure."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "When is a fake a better choice than stubbing each call by hand?",
+      "options": [
+        { "id": "a", "text": "When the collaborator is stateful — you write then read, or run a sequence" },
+        { "id": "b", "text": "When you make exactly one canned read" },
+        { "id": "c", "text": "When you only want to verify a method was called" },
+        { "id": "d", "text": "Never — stubs are always better" }
+      ],
+      "answer": "a",
+      "explanation": "A fake tracks state naturally, so it beats brittle per-call stubs for stateful collaborators like repositories."
+    },
+    {
+      "id": "q3",
+      "type": "fill-blank",
+      "prompt": "Stubs and fakes support ____ verification — you assert on the result or resulting state, not on which calls were made.",
+      "answer": ["state", "state-based", "result"],
+      "explanation": "Stubs and fakes go with state verification; mocks/spies go with behavior verification."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "prompt": "Which are accurate about fakes? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "A fake is a working but simplified implementation, often in-memory" },
+        { "id": "b", "text": "A fake must stay faithful to real behavior on the parts you depend on" },
+        { "id": "c", "text": "A contract test can run the same checks against fake and real to prevent drift" },
+        { "id": "d", "text": "A fake never actually stores or computes anything" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Fakes really work (just simplified), must stay faithful, and can be guarded by contract tests; one that 'never stores anything' is a stub, not a fake."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each tool/term to its role.",
+      "pairs": [
+        { "left": "return_value", "right": "A Mock's canned return for a call" },
+        { "left": "side_effect", "right": "Make a Mock raise or return a sequence" },
+        { "left": "In-memory repo", "right": "A typical fake" },
+        { "left": "Contract test", "right": "Keeps a fake in sync with the real implementation" }
+      ],
+      "explanation": "return_value and side_effect configure stubs; an in-memory repo is a fake; contract tests prevent fake drift."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the steps to test a write-then-read workflow with a fake.",
+      "items": [
+        { "id": "build", "text": "Build an in-memory fake and seed any starting state" },
+        { "id": "act", "text": "Run the code that writes and reads through the fake" },
+        { "id": "assert", "text": "Assert the fake's end state is correct" }
+      ],
+      "answer": ["build", "act", "assert"],
+      "explanation": "Create the fake, exercise the workflow, then verify the resulting stored state."
+    }
+  ]
+}

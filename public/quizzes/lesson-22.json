@@ -1,0 +1,79 @@
+{
+  "id": "quiz-lesson-22",
+  "lessonId": "lesson-22",
+  "title": "Continuous Integration and Testing",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is continuous integration, at its core?",
+      "options": [
+        { "id": "a", "text": "Deploying to production once a year" },
+        { "id": "b", "text": "Automatically building and testing every change so breakage is caught early" },
+        { "id": "c", "text": "Writing tests only before a release" },
+        { "id": "d", "text": "Running tests manually on your laptop" }
+      ],
+      "answer": "b",
+      "explanation": "CI verifies each change automatically with a self-testing build, catching integration problems within minutes."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Why run lint/type-check before the full test run in a pipeline?",
+      "options": [
+        { "id": "a", "text": "They take longer than tests" },
+        { "id": "b", "text": "They're fast and cheap, so obvious problems fail in seconds (fail-fast)" },
+        { "id": "c", "text": "They replace the need for tests" },
+        { "id": "d", "text": "CI requires alphabetical step order" }
+      ],
+      "answer": "b",
+      "explanation": "Ordering fast checks first surfaces obvious failures quickly, saving time before the slower test run."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which keep CI fast and trustworthy? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Parallelize tests and cache dependencies" },
+        { "id": "b", "text": "Stage slow/E2E tests instead of running all on every push" },
+        { "id": "c", "text": "Mask flaky tests with blanket reruns" },
+        { "id": "d", "text": "Gate merges on green required checks" }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": "Parallelism, caching, staging, and required checks help; blanket reruns hide flakiness and erode trust."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "A CI check that must pass before a pull request can merge is called a required ____ check.",
+      "answer": ["status", "status check"],
+      "explanation": "Required status checks gate merges so broken changes can't reach the shared branch."
+    },
+    {
+      "id": "q5",
+      "type": "ordering",
+      "prompt": "Order the steps of a typical CI pipeline.",
+      "items": [
+        { "id": "checkout", "text": "Checkout code and set up the runtime" },
+        { "id": "install", "text": "Install dependencies (cached)" },
+        { "id": "lint", "text": "Lint / type-check (fast, fail early)" },
+        { "id": "test", "text": "Run the tests" }
+      ],
+      "answer": ["checkout", "install", "lint", "test"],
+      "explanation": "Check out and set up, install deps, run fast checks first, then the test suite."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each CI technique to its benefit.",
+      "pairs": [
+        { "left": "Parallelization", "right": "Run tests concurrently to cut wall-clock time" },
+        { "left": "Dependency caching", "right": "Avoid repeating slow installs each run" },
+        { "left": "Test selection/staging", "right": "Fast tests per push, slow tests less often" },
+        { "left": "Required status check", "right": "Block merges while tests are red" }
+      ],
+      "explanation": "These techniques keep feedback fast and the shared branch releasable."
+    }
+  ]
+}
